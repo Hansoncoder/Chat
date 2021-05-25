@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="17701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" colorMatched="YES">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB" customClass="ChatInputBar" customModule="BatChat">
+            <rect key="frame" x="0.0" y="0.0" width="466" height="140"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" verticalHuggingPriority="249" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="fsh-hH-hKG" userLabel="TextView" customClass="ExpandableTextView" customModule="BatChat">
+                    <rect key="frame" x="48" y="10" width="338" height="76"/>
+                    <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" relation="lessThanOrEqual" constant="90" id="B5O-Ya-ZFh"/>
+                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="35" id="CgQ-NO-Viw"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                </textView>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kK2-Sd-5DR">
+                    <rect key="frame" x="0.0" y="51" width="48" height="35"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="48" id="Hpm-XT-5gF"/>
+                        <constraint firstAttribute="height" constant="35" id="Vcl-ju-Pcj"/>
+                    </constraints>
+                    <state key="normal" image="camera.aperture" catalog="system"/>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" horizontalCompressionResistancePriority="751" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hE9-hU-Ci1">
+                    <rect key="frame" x="396" y="54.5" width="60" height="28"/>
+                    <color key="backgroundColor" red="0.98431372549999996" green="0.44705882349999998" blue="0.35686274509999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="28" id="8EJ-fX-JIN"/>
+                        <constraint firstAttribute="width" constant="60" id="VUl-e3-STq"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <state key="normal" title="发送"/>
+                    <connections>
+                        <action selector="buttonTapped:" destination="iN0-l3-epB" eventType="touchUpInside" id="9hi-0N-Y5F"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hkz-tq-X6j" userLabel="Tab selector container">
+                    <rect key="frame" x="0.0" y="96" width="466" height="44"/>
+                    <subviews>
+                        <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WNX-pj-5AB" customClass="HorizontalStackScrollView" customModule="BatChat">
+                            <rect key="frame" x="10" y="0.0" width="446" height="44"/>
+                            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        </scrollView>
+                    </subviews>
+                    <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstItem="WNX-pj-5AB" firstAttribute="leading" secondItem="hkz-tq-X6j" secondAttribute="leading" constant="10" id="Jk5-7M-Mh8"/>
+                        <constraint firstItem="WNX-pj-5AB" firstAttribute="top" secondItem="hkz-tq-X6j" secondAttribute="top" id="QdZ-iC-yJd"/>
+                        <constraint firstAttribute="trailing" secondItem="WNX-pj-5AB" secondAttribute="trailing" constant="10" id="dMD-2e-sMW"/>
+                        <constraint firstAttribute="bottom" secondItem="WNX-pj-5AB" secondAttribute="bottom" id="i7l-t6-4IG"/>
+                        <constraint firstAttribute="height" constant="44" id="vwa-F7-EIB"/>
+                    </constraints>
+                </view>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="b1n-fp-7di" userLabel="Top border">
+                    <rect key="frame" x="0.0" y="0.0" width="466" height="1"/>
+                    <color key="backgroundColor" red="0.66666668653488159" green="0.66666668653488159" blue="0.66666668653488159" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="1" identifier="top-border-height" id="IIv-qg-Tlp"/>
+                    </constraints>
+                </view>
+            </subviews>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="kK2-Sd-5DR" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="1i9-P0-xFV"/>
+                <constraint firstItem="hkz-tq-X6j" firstAttribute="top" secondItem="fsh-hH-hKG" secondAttribute="bottom" constant="10" id="4Vl-vV-gaa"/>
+                <constraint firstAttribute="trailing" secondItem="hE9-hU-Ci1" secondAttribute="trailing" constant="10" id="9bG-o9-VHd"/>
+                <constraint firstItem="fsh-hH-hKG" firstAttribute="leading" secondItem="kK2-Sd-5DR" secondAttribute="trailing" id="Bw7-gX-NJL"/>
+                <constraint firstItem="hE9-hU-Ci1" firstAttribute="centerY" secondItem="kK2-Sd-5DR" secondAttribute="centerY" id="CPW-JU-lyE"/>
+                <constraint firstAttribute="bottom" secondItem="hkz-tq-X6j" secondAttribute="bottom" id="HFl-3K-Xpk"/>
+                <constraint firstAttribute="trailing" secondItem="hkz-tq-X6j" secondAttribute="trailing" id="V4u-Kv-Ub2"/>
+                <constraint firstItem="hE9-hU-Ci1" firstAttribute="leading" secondItem="fsh-hH-hKG" secondAttribute="trailing" constant="10" id="Xgh-vu-uJy"/>
+                <constraint firstItem="fsh-hH-hKG" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="10" id="ZsI-iu-9nR"/>
+                <constraint firstItem="hkz-tq-X6j" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="eGb-Fb-2Of"/>
+                <constraint firstItem="hkz-tq-X6j" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="gpt-vU-KzZ"/>
+                <constraint firstAttribute="trailing" secondItem="b1n-fp-7di" secondAttribute="trailing" id="lmb-AV-eyD"/>
+                <constraint firstItem="b1n-fp-7di" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="mci-2b-Z7f"/>
+                <constraint firstItem="b1n-fp-7di" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="sKU-B2-FjZ"/>
+                <constraint firstItem="kK2-Sd-5DR" firstAttribute="bottom" secondItem="fsh-hH-hKG" secondAttribute="bottom" id="tnc-hP-YIO"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <nil key="simulatedTopBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="gpt-vU-KzZ"/>
+                </mask>
+            </variation>
+            <connections>
+                <outlet property="scrollView" destination="WNX-pj-5AB" id="Qqy-Ny-mng"/>
+                <outlet property="sendButton" destination="hE9-hU-Ci1" id="VFQ-Pb-J37"/>
+                <outlet property="tabBarContainerHeightConstraint" destination="vwa-F7-EIB" id="d3G-fs-hEH"/>
+                <outlet property="textView" destination="fsh-hH-hKG" id="QMH-G9-ADs"/>
+                <outlet property="topBorderHeightConstraint" destination="IIv-qg-Tlp" id="qiB-dH-AHS"/>
+                <outletCollection property="constraintsForVisibleTextView" destination="4Vl-vV-gaa" collectionClass="NSMutableArray" id="rBg-0B-c4B"/>
+                <outletCollection property="constraintsForHiddenTextView" destination="gpt-vU-KzZ" collectionClass="NSMutableArray" id="EzL-hX-Wle"/>
+            </connections>
+            <point key="canvasLocation" x="-439.13043478260875" y="160.71428571428569"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="camera.aperture" catalog="system" width="128" height="121"/>
+    </resources>
+</document>
