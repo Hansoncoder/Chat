@@ -32,6 +32,7 @@ public protocol PhotoBubbleViewStyleProtocol {
     func placeholderIconTintColor(viewModel: PhotoMessageViewModelProtocol) -> UIColor
     func tailWidth(viewModel: PhotoMessageViewModelProtocol) -> CGFloat
     func bubbleSize(viewModel: PhotoMessageViewModelProtocol) -> CGSize
+    func bubblePandding(viewModel: PhotoMessageViewModelProtocol) -> UIEdgeInsets
     func progressIndicatorColor(viewModel: PhotoMessageViewModelProtocol) -> UIColor
     func overlayColor(viewModel: PhotoMessageViewModelProtocol) -> UIColor?
 }
@@ -54,6 +55,7 @@ open class PhotoBubbleView: UIView, MaximumLayoutWidthSpecificable, BackgroundSi
 
     private func commonInit() {
         self.autoresizesSubviews = false
+        self.addSubview(self.borderView)
         self.addSubview(self.imageView)
         self.addSubview(self.placeholderIconView)
         self.addSubview(self.progressIndicatorView)
@@ -65,7 +67,7 @@ open class PhotoBubbleView: UIView, MaximumLayoutWidthSpecificable, BackgroundSi
         imageView.clipsToBounds = true
         imageView.autoresizesSubviews = false
         imageView.contentMode = .scaleAspectFill
-        imageView.addSubview(self.borderView)
+//        imageView.addSubview(self.borderView)
         return imageView
     }()
 
@@ -177,7 +179,7 @@ open class PhotoBubbleView: UIView, MaximumLayoutWidthSpecificable, BackgroundSi
         } else {
             self.overlayView.alpha = 0
         }
-        self.borderView.image = self.photoMessageStyle.borderImage(viewModel: photoMessageViewModel)
+        self.borderView.image = self.photoMessageStyle.borderImage(viewModel: photoMessageViewModel)?.bubbleResizable
 
         self.imageView.layer.mask = .bma_maskLayer(from: self.photoMessageStyle.maskingImage(viewModel: self.photoMessageViewModel))
     }
@@ -201,7 +203,7 @@ open class PhotoBubbleView: UIView, MaximumLayoutWidthSpecificable, BackgroundSi
         }
 
         self.overlayView.bma_rect = self.imageView.bounds
-        self.borderView.bma_rect = self.imageView.bounds
+        self.borderView.frame = self.bounds
     }
 
     private func calculateTextBubbleLayout(maximumWidth: CGFloat) -> PhotoBubbleLayoutModel {
@@ -225,17 +227,20 @@ private class PhotoBubbleLayoutModel {
 
     struct LayoutContext {
         let photoSize: CGSize
+        let photoPadding: UIEdgeInsets
         let placeholderSize: CGSize
         let preferredMaxLayoutWidth: CGFloat
         let isIncoming: Bool
         let tailWidth: CGFloat
 
         init(photoSize: CGSize,
+             photoPadding: UIEdgeInsets,
              placeholderSize: CGSize,
              tailWidth: CGFloat,
              isIncoming: Bool,
              preferredMaxLayoutWidth width: CGFloat) {
             self.photoSize = photoSize
+            self.photoPadding = photoPadding
             self.placeholderSize = placeholderSize
             self.tailWidth = tailWidth
             self.isIncoming = isIncoming
@@ -245,7 +250,7 @@ private class PhotoBubbleLayoutModel {
         init(photoMessageViewModel model: PhotoMessageViewModelProtocol,
              style: PhotoBubbleViewStyleProtocol,
              containerWidth width: CGFloat) {
-            self.init(photoSize: style.bubbleSize(viewModel: model),
+            self.init(photoSize: style.bubbleSize(viewModel: model), photoPadding: style.bubblePandding(viewModel: model),
                       placeholderSize: style.placeholderIconImage(viewModel: model).size,
                       tailWidth: style.tailWidth(viewModel: model),
                       isIncoming: model.isIncoming,
@@ -260,10 +265,20 @@ private class PhotoBubbleLayoutModel {
 
     func calculateLayout() {
         let photoSize = self.layoutContext.photoSize
-        self.photoFrame = CGRect(origin: .zero, size: photoSize)
+        let pandding = self.layoutContext.photoPadding
+        let widht = self.layoutContext.photoSize.width
+        let height = self.layoutContext.photoSize.height
+        self.photoFrame = CGRect(
+            x: pandding.left, y: pandding.top,
+            width: widht, height: height)
+        
         self.placeholderFrame = CGRect(origin: .zero, size: self.layoutContext.placeholderSize)
         let offsetX: CGFloat = 0.5 * self.layoutContext.tailWidth * (self.layoutContext.isIncoming ? 1.0 : -1.0)
         self.visualCenter = self.photoFrame.bma_center.bma_offsetBy(dx: offsetX, dy: 0)
-        self.size = photoSize
+        
+        let borderW = photoSize.width + pandding.left + pandding.right
+        let borderH = photoSize.height + pandding.top + pandding.bottom
+        self.size = CGSize(width: borderW, height: borderH)
+        
     }
 }

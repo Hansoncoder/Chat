@@ -8,7 +8,7 @@
 import UIKit
 import Chatto
 
-class BCSessionViewController: DemoChatViewController {
+class BCSessionViewController: BCChatViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -41,7 +41,7 @@ class BCSessionViewController: DemoChatViewController {
     
 }
 
-class DemoChatViewController: BaseChatViewController {
+class BCChatViewController: BaseChatViewController {
     var shouldUseAlternativePresenter: Bool = false
 
     var inputTextView: ChatInputBar?
@@ -64,6 +64,7 @@ class DemoChatViewController: BaseChatViewController {
         self.title = "Chat"
         self.messagesSelector.delegate = self
         self.chatItemsDecorator = BaseChatItemsDecorator(messagesSelector: self.messagesSelector)
+        view.backgroundColor = .backColor
 //        self.replyActionHandler = DemoReplyActionHandler(presentingViewController: self)
     }
 
@@ -192,7 +193,7 @@ class DemoChatViewController: BaseChatViewController {
 //    }
 }
 
-extension DemoChatViewController: MessagesSelectorDelegate {
+extension BCChatViewController: MessagesSelectorDelegate {
     func messagesSelector(_ messagesSelector: MessagesSelectorProtocol, didSelectMessage: MessageModelProtocol) {
         self.enqueueModelUpdate(updateType: .normal)
     }

@@ -29,18 +29,18 @@ final class BaseChatItemsDecorator: ChatItemsDecoratorProtocol {
             let prev: ChatItemProtocol? = (index > 0) ? chatItems[index - 1] : nil
 
             let bottomMargin = self.separationAfterItem(chatItem, next: next)
-            var showsTail = false
+            let showsTail = true
             var additionalItems =  [DecoratedChatItem]()
             var addTimeSeparator = false
             var isSelected = false
             var isShowingSelectionIndicator = false
 
             if let currentMessage = chatItem as? MessageModelProtocol {
-                if let nextMessage = next as? MessageModelProtocol {
-                    showsTail = currentMessage.senderId != nextMessage.senderId
-                } else {
-                    showsTail = true
-                }
+//                if let nextMessage = next as? MessageModelProtocol {
+//                    showsTail = currentMessage.senderId != nextMessage.senderId
+//                } else {
+//                    showsTail = true
+//                }
 
                 if let previousMessage = prev as? MessageModelProtocol {
                     addTimeSeparator = !calendar.isDate(currentMessage.date, inSameDayAs: previousMessage.date)

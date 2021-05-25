@@ -151,10 +151,10 @@ public extension TextMessageCollectionViewCellDefaultStyle { // Default values
 
     static func createDefaultBubbleImages() -> BubbleImages {
         return BubbleImages(
-            incomingTail: UIImage(named: "bubble-incoming-tail", in: Bundle.resources, compatibleWith: nil)!,
-            incomingNoTail: UIImage(named: "bubble-incoming", in: Bundle.resources, compatibleWith: nil)!,
-            outgoingTail: UIImage(named: "bubble-outgoing-tail", in: Bundle.resources, compatibleWith: nil)!,
-            outgoingNoTail: UIImage(named: "bubble-outgoing", in: Bundle.resources, compatibleWith: nil)!
+            incomingTail: UIImage(named: "bubble-incoming-border-tail", in: Bundle.resources, compatibleWith: nil)!,
+            incomingNoTail: UIImage(named: "bubble-incoming-border", in: Bundle.resources, compatibleWith: nil)!,
+            outgoingTail: UIImage(named: "bubble-outgoing-border-tail", in: Bundle.resources, compatibleWith: nil)!,
+            outgoingNoTail: UIImage(named: "bubble-outgoing-border", in: Bundle.resources, compatibleWith: nil)!
         )
     }
 
