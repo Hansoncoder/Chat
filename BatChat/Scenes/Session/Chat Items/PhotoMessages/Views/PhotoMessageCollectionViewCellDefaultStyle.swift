@@ -87,20 +87,20 @@ open class PhotoMessageCollectionViewCellDefaultStyle: PhotoMessageCollectionVie
 
     let bubbleMasks: BubbleMasks
     let sizes: Sizes
-    let pandding: UIEdgeInsets
+    let inset: UIEdgeInsets
     let colors: Colors
     let baseStyle: BaseMessageCollectionViewCellDefaultStyle
     public init(
         bubbleMasks: BubbleMasks = PhotoMessageCollectionViewCellDefaultStyle.createDefaultBubbleMasks(),
         sizes: Sizes = PhotoMessageCollectionViewCellDefaultStyle.createDefaultSizes(),
-        pandding: UIEdgeInsets = PhotoMessageCollectionViewCellDefaultStyle.createDefaultPandding(),
+        inset: UIEdgeInsets = PhotoMessageCollectionViewCellDefaultStyle.createDefaultPandding(),
         colors: Colors = PhotoMessageCollectionViewCellDefaultStyle.createDefaultColors(),
         baseStyle: BaseMessageCollectionViewCellDefaultStyle = BaseMessageCollectionViewCellDefaultStyle()) {
         self.bubbleMasks = bubbleMasks
         self.sizes = sizes
         self.colors = colors
         self.baseStyle = baseStyle
-        self.pandding = pandding
+        self.inset = inset
     }
 
     private lazy var maskImageIncomingTail: UIImage = self.bubbleMasks.incomingTail()
@@ -165,16 +165,8 @@ open class PhotoMessageCollectionViewCellDefaultStyle: PhotoMessageCollectionVie
         }
     }
     
-    
-    open func bubbleSize(viewModel: PhotoMessageViewModelProtocol) -> CGSize {
-        let tempSize = photoSize(viewModel: viewModel)
-        let widht = tempSize.width + pandding.left + pandding.right
-        let height = tempSize.height + pandding.top + pandding.bottom
-        return CGSize(width: widht, height: height)
-    }
-    
-    open func bubblePandding(viewModel: PhotoMessageViewModelProtocol) -> UIEdgeInsets {
-        return pandding
+    open func photoInset(viewModel: PhotoMessageViewModelProtocol) -> UIEdgeInsets {
+        return self.inset
     }
 
     open func progressIndicatorColor(viewModel: PhotoMessageViewModelProtocol) -> UIColor {
@@ -209,7 +201,7 @@ public extension PhotoMessageCollectionViewCellDefaultStyle { // Default values
     }
 
     static func createDefaultPandding() -> UIEdgeInsets {
-        return UIEdgeInsets(top: 10, left: 10, bottom: 10, right: 10)
+        return UIEdgeInsets(top: 5, left: 5, bottom: 5, right: 5)
     }
 
     static func createDefaultColors() -> Colors {
