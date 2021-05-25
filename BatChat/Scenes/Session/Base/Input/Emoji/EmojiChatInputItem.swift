@@ -32,7 +32,7 @@ open class EmojiChatInputItem: NSObject, ChatInputItemProtocol {
             UIControlStateWrapper(state: .selected): UIImage(named: "emoji-icon-selected", in: Bundle.resources, compatibleWith: nil)!,
             UIControlStateWrapper(state: .highlighted): UIImage(named: "emoji-icon-selected", in: Bundle.resources, compatibleWith: nil)!,
         ]
-        return TabInputButtonAppearance(images: images)
+        return TabInputButtonAppearance(images: images, size: nil)
     }
 
     private lazy var internalTabView: UIButton = {
