@@ -52,6 +52,8 @@ public protocol MessageViewModelProtocol: class { // why class? https://gist.git
     var status: MessageViewModelStatus { get }
     var avatarImage: Observable<UIImage?> { get set }
     var canReply: Bool { get }
+    var isReadMessage: Bool { get }
+    
     func willBeShown() // Optional
     func wasHidden() // Optional
 }
@@ -77,6 +79,7 @@ extension DecoratedMessageViewModelProtocol {
     }
 
     public var canReply: Bool { self.messageViewModel.canReply }
+    public var isReadMessage: Bool { self.messageViewModel.isReadMessage }
 
     public var isIncoming: Bool {
         return self.messageViewModel.isIncoming
@@ -114,8 +117,9 @@ extension DecoratedMessageViewModelProtocol {
 }
 
 open class MessageViewModel: MessageViewModelProtocol {
-
     open var canReply: Bool { self.messageModel.canReply }
+    open var isReadMessage: Bool { self.messageModel.isReadMessage }
+    open var showReadTip: Bool { self.decorationAttributes.isShowReadTip }
 
     open var isIncoming: Bool {
         return self.messageModel.isIncoming

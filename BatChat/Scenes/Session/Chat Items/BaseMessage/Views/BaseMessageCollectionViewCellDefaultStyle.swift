@@ -99,7 +99,7 @@ open class BaseMessageCollectionViewCellDefaultStyle: BaseMessageCollectionViewC
             self.deselectedIcon = deselectedIcon
         }
     }
-
+    
     let colors: Colors
     let bubbleBorderImages: BubbleBorderImages?
     let failedIconImages: FailedIconImages
@@ -108,6 +108,7 @@ open class BaseMessageCollectionViewCellDefaultStyle: BaseMessageCollectionViewC
     let incomingAvatarStyle: AvatarStyle
     let outgoingAvatarStyle: AvatarStyle
     let selectionIndicatorStyle: SelectionIndicatorStyle
+    let readMessageStyle: DateTextStyle
 
     public init(
         colors: Colors = BaseMessageCollectionViewCellDefaultStyle.createDefaultColors(),
@@ -118,7 +119,8 @@ open class BaseMessageCollectionViewCellDefaultStyle: BaseMessageCollectionViewC
         incomingAvatarStyle: AvatarStyle = AvatarStyle(),
         outgoingAvatarStyle: AvatarStyle = AvatarStyle(),
         selectionIndicatorStyle: SelectionIndicatorStyle = BaseMessageCollectionViewCellDefaultStyle.createDefaultSelectionIndicatorStyle(),
-        replyIndicatorStyle: ReplyIndicatorStyle? = nil
+        replyIndicatorStyle: ReplyIndicatorStyle? = nil,
+        readMessageStyle: DateTextStyle = BaseMessageCollectionViewCellDefaultStyle.createDefaultRedMessageTextStyle()
     ) {
         self.colors = colors
         self.bubbleBorderImages = bubbleBorderImages
@@ -129,11 +131,17 @@ open class BaseMessageCollectionViewCellDefaultStyle: BaseMessageCollectionViewC
         self.outgoingAvatarStyle = outgoingAvatarStyle
         self.selectionIndicatorStyle = selectionIndicatorStyle
         self.replyIndicatorStyle = replyIndicatorStyle
+        self.readMessageStyle = readMessageStyle
 
         self.dateStringAttributes = [
             NSAttributedString.Key.font: self.dateTextStyle.font(),
             NSAttributedString.Key.foregroundColor: self.dateTextStyle.color()
         ]
+        self.readStringAttributes = [
+            NSAttributedString.Key.font: self.readMessageStyle.font(),
+            NSAttributedString.Key.foregroundColor: self.readMessageStyle.color()
+        ]
+
     }
 
     public lazy var baseColorIncoming: UIColor = self.colors.incoming()
@@ -149,10 +157,17 @@ open class BaseMessageCollectionViewCellDefaultStyle: BaseMessageCollectionViewC
     public let replyIndicatorStyle: ReplyIndicatorStyle?
 
     private let dateStringAttributes: [NSAttributedString.Key: AnyObject]
+    private let readStringAttributes: [NSAttributedString.Key: AnyObject]
 
     open func attributedStringForDate(_ date: String) -> NSAttributedString {
         return NSAttributedString(string: date, attributes: self.dateStringAttributes)
     }
+    
+    open func attributedStringForReadMessage(_ isReaded: Bool) -> NSAttributedString {
+        let text = isReaded ? "已读" : "未读"
+        return NSAttributedString(string: text, attributes: self.readStringAttributes)
+    }
+
 
     open func borderImage(viewModel: MessageViewModelProtocol) -> UIImage? {
         switch (viewModel.isIncoming, viewModel.decorationAttributes.isShowingTail) {
@@ -166,9 +181,16 @@ open class BaseMessageCollectionViewCellDefaultStyle: BaseMessageCollectionViewC
             return self.borderOutgoingNoTail
         }
     }
-
     open func avatarSize(viewModel: MessageViewModelProtocol) -> CGSize {
         return self.avatarStyle(for: viewModel).size
+    }
+    
+    open func redMessageSize(viewModel: MessageViewModelProtocol) -> CGSize {
+        return (viewModel.decorationAttributes.isShowReadTip &&
+                    viewModel.isIncoming &&
+                    !viewModel.isShowingFailedIcon) ?
+            CGSize(width: 50, height: 19) :
+            .zero
     }
 
     open func avatarVerticalAlignment(viewModel: MessageViewModelProtocol) -> VerticalAlignment {
@@ -222,6 +244,10 @@ public extension BaseMessageCollectionViewCellDefaultStyle { // Default values
 
     static func createDefaultDateTextStyle() -> DateTextStyle {
         return DateTextStyle(font: UIFont.systemFont(ofSize: 12), color: UIColor.bma_color(rgb: 0x9aa3ab))
+    }
+    
+    static func createDefaultRedMessageTextStyle() -> DateTextStyle {
+        return DateTextStyle(font: UIFont.systemFont(ofSize: 12), color: UIColor.bma_color(rgb: 0x9EA5AE))
     }
 
     static func createDefaultLayoutConstants() -> BaseMessageCollectionViewCellLayoutConstants {

@@ -134,7 +134,6 @@ class BCChatViewController: BaseChatViewController {
 //            baseCellStyle: BaseMessageCollectionViewCellAvatarStyle()
 //        )
 
-        ChatTextMessageModel.chatItemType
         return [
             ChatTextMessageModel.chatItemType: [textMessagePresenter],
             ChatPhotoMessageModel.chatItemType: [photoMessagePresenter],

@@ -18,6 +18,14 @@ class BaseMessageCollectionViewCellAvatarStyle: BaseMessageCollectionViewCellDef
         return CGSize(width: 35, height: 35)
     }
     
+    override func redMessageSize(viewModel: MessageViewModelProtocol) -> CGSize {
+        // Display avatar for both incoming and outgoing messages for demo purpose
+        return (viewModel.decorationAttributes.isShowReadTip && !viewModel.isIncoming) ?
+            CGSize(width: 50, height: 19) :
+            .zero
+    }
+    
+    
     override func avatarVerticalAlignment(viewModel: MessageViewModelProtocol) -> VerticalAlignment {
         return .top
     }

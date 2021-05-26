@@ -485,9 +485,9 @@
 		C00768AF25E4B80B0098DF89 /* Chat Items */ = {
 			isa = PBXGroup;
 			children = (
+				C00768C625E4B9490098DF89 /* BaseMessage */,
 				C00768D825E4BA240098DF89 /* ChatItemDecorationAttributes.swift */,
 				C012778625EE155E00DE8ADD /* PhotoMessages */,
-				C00768C625E4B9490098DF89 /* BaseMessage */,
 				C00768B025E4B81B0098DF89 /* Text Messages */,
 				C0E2B89425E63FE200F7B092 /* Time Separator */,
 			);

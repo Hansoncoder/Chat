@@ -62,7 +62,8 @@ final class BaseChatItemsDecorator: ChatItemsDecoratorProtocol {
                 isShowingTail: showsTail,
                 isShowingAvatar: showsTail,
                 isShowingSelectionIndicator: isShowingSelectionIndicator,
-                isSelected: isSelected
+                isSelected: isSelected,
+                isShowReadTip: true
             )
 
             decoratedChatItems.append(

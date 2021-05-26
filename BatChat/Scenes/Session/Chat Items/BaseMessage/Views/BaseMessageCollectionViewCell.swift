@@ -42,12 +42,14 @@ public struct ReplyIndicatorStyle {
 
 public protocol BaseMessageCollectionViewCellStyleProtocol {
     func avatarSize(viewModel: MessageViewModelProtocol) -> CGSize // .zero => no avatar
+    func redMessageSize(viewModel: MessageViewModelProtocol) -> CGSize // .zero => no redMessage
     func avatarVerticalAlignment(viewModel: MessageViewModelProtocol) -> VerticalAlignment
     var failedIcon: UIImage { get }
     var failedIconHighlighted: UIImage { get }
     var selectionIndicatorMargins: UIEdgeInsets { get }
     func selectionIndicatorIcon(for viewModel: MessageViewModelProtocol) -> UIImage
     func attributedStringForDate(_ date: String) -> NSAttributedString
+    func attributedStringForReadMessage(_ isReaded: Bool) -> NSAttributedString
     func layoutConstants(viewModel: MessageViewModelProtocol) -> BaseMessageCollectionViewCellLayoutConstants
     var replyIndicatorStyle: ReplyIndicatorStyle? { get }
 }
@@ -206,6 +208,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
         self.contentView.addSubview(self.failedButton)
         self.contentView.addSubview(self.selectionIndicator)
         self.contentView.addSubview(self.replyIndicator)
+        self.contentView.addSubview(self.readMessageLabel)
         self.replyIndicator.alpha = 0
         self.contentView.isExclusiveTouch = true
         self.isExclusiveTouch = true
@@ -250,6 +253,8 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
         button.addTarget(self, action: #selector(BaseMessageCollectionViewCell.failedButtonTapped), for: .touchUpInside)
         return button
     }()
+    
+    public private(set) lazy var readMessageLabel: UILabel = UILabel()
 
     // MARK: View model binding
 
@@ -267,7 +272,15 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
         }
         self.accessoryTimestampView.attributedText = style.attributedStringForDate(viewModel.date)
         self.updateSelectionIndicator(with: style)
-
+        
+        if shouldShowFailedIcon {
+            self.failedButton.alpha = 1
+        } else {
+            self.failedButton.alpha = 0
+        }
+        self.readMessageLabel.attributedText = style.attributedStringForReadMessage(viewModel.isReadMessage)
+        self.readMessageLabel.textAlignment =  viewModel.isIncoming ? .left : .right
+        
         self.contentView.isUserInteractionEnabled = !viewModel.decorationAttributes.isShowingSelectionIndicator
         self.selectionTapGestureRecognizer?.isEnabled = viewModel.decorationAttributes.isShowingSelectionIndicator
         self.selectionIndicator.isHidden = !viewModel.decorationAttributes.isShowingSelectionIndicator
@@ -286,6 +299,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
         guard let viewModel = self.messageViewModel else { return }
         self.avatarView.isHidden = !viewModel.decorationAttributes.isShowingAvatar
         viewModel.avatarImage.bind(to: self.avatarView.rx.image).dispose()
+        
         
 //        viewModel.avatarImage.observe(self) { [weak self] _, new in
 //            guard let self = self else { return }
@@ -331,6 +345,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
 
         self.avatarView.bma_rect = layout.avatarViewFrame
         self.selectionIndicator.bma_rect = layout.selectionIndicatorFrame
+        self.readMessageLabel.bma_rect = layout.readMessageFrame
 
         if self.accessoryTimestampView.superview != nil {
             let layoutConstants = baseStyle.layoutConstants(viewModel: messageViewModel)
@@ -379,6 +394,7 @@ open class BaseMessageCollectionViewCell<BubbleViewType>: UICollectionViewCell, 
             bubbleView: self.bubbleView,
             isIncoming: self.messageViewModel.isIncoming,
             isShowingFailedButton: self.shouldShowFailedIcon,
+            readTipSize: self.baseStyle.redMessageSize(viewModel: self.messageViewModel),
             failedButtonSize: self.baseStyle.failedIcon.size,
             avatarSize: self.baseStyle.avatarSize(viewModel: self.messageViewModel),
             avatarVerticalAlignment: self.baseStyle.avatarVerticalAlignment(viewModel: self.messageViewModel),
@@ -544,6 +560,7 @@ private struct Layout {
     private (set) var failedButtonFrame = CGRect.zero
     private (set) var bubbleViewFrame = CGRect.zero
     private (set) var avatarViewFrame = CGRect.zero
+    private (set) var readMessageFrame = CGRect.zero
     private (set) var selectionIndicatorFrame = CGRect.zero
     private (set) var preferredMaxWidthForBubble: CGFloat = 0
 
@@ -598,6 +615,7 @@ private struct Layout {
 
         currentX += self.selectionIndicatorFrame.maxX
 
+        self.readMessageFrame.size = parameters.readTipSize
         if isIncoming {
             currentX += horizontalMargin
             self.avatarViewFrame.origin.x = currentX
@@ -612,6 +630,8 @@ private struct Layout {
                 currentX += horizontalInterspacing
             }
             self.bubbleViewFrame.origin.x = currentX
+            self.readMessageFrame.origin.x = avatarViewFrame.maxX + 10
+            self.readMessageFrame.origin.y = self.bubbleViewFrame.maxY
         } else {
             currentX = containerRect.maxX - horizontalMargin
             currentX -= avatarSize.width
@@ -625,11 +645,18 @@ private struct Layout {
                 self.failedButtonFrame.origin.x = currentX
                 currentX -= horizontalInterspacing
             }
+            
+            
+            
             currentX -= bubbleSize.width
             self.bubbleViewFrame.origin.x = currentX
+            
+            self.readMessageFrame.origin.x = avatarViewFrame.minX - readMessageFrame.width - 10
+            self.readMessageFrame.origin.y = self.bubbleViewFrame.maxY
         }
-
-        self.size = containerRect.size
+        
+        let height = containerRect.size.height + parameters.readTipSize.height + 10
+        self.size = CGSize(width: containerRect.size.width, height: height)
         self.preferredMaxWidthForBubble = preferredWidthForBubble
     }
 }
@@ -642,6 +669,7 @@ private struct LayoutParameters {
     let bubbleView: UIView
     let isIncoming: Bool
     let isShowingFailedButton: Bool
+    let readTipSize: CGSize
     let failedButtonSize: CGSize
     let avatarSize: CGSize
     let avatarVerticalAlignment: VerticalAlignment
