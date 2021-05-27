@@ -8,6 +8,8 @@
 
 import UIKit
 
+public var DebugColor = false
+
 extension UIColor {
     // Hex String -> UIColor
     convenience init(hexString: String) {
@@ -87,36 +89,60 @@ extension UIColor {
         }
     }
     
-    //用数值初始化颜色，便于生成设计图上标明的十六进制颜色
-    convenience init(hex hexText: UInt) {
-        self.init(
-            red: CGFloat((hexText & 0xFF0000) >> 16) / 255.0,
-            green: CGFloat((hexText & 0x00FF00) >> 8) / 255.0,
-            blue: CGFloat(hexText & 0x0000FF) / 255.0,
-            alpha: CGFloat(1.0)
-        )
-    }
-
-    convenience init(red: CGFloat, green: CGFloat, blue: CGFloat) {
-        self.init( red: red / 255.0, green: green / 255.0,
-            blue: blue / 255.0, alpha: 1.0 )
-    }
-
-    public class var random: UIColor {
-        get {
-            let red = CGFloat(arc4random() % 256) / 255.0
-            let green = CGFloat(arc4random() % 256) / 255.0
-            let blue = CGFloat(arc4random() % 256) / 255.0
-            return UIColor(red: red, green: green, blue: blue, alpha: 1.0)
+    convenience init?(hexRGBString: String?, alpha: CGFloat = 1.0) {
+        guard let intString = hexRGBString?.replacingOccurrences(of: "#", with: "") else { return nil }
+        guard let hex = UInt(intString, radix: 16) else {
+            return nil
         }
+        self.init(hex: hex, alpha: alpha)
     }
+    
+    class func hexadecimalColor(hexadecimal: String) -> UIColor {
+        var cstr = hexadecimal.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines).uppercased() as NSString;
+        if (cstr.length < 6) {
+            return UIColor.clear;
+        }
+        if (cstr.hasPrefix("0X")) {
+            cstr = cstr.substring(from: 2) as NSString
+        }
+        if (cstr.hasPrefix("#")) {
+            cstr = cstr.substring(from: 1) as NSString
+        }
+        if (cstr.length != 6) {
+            return UIColor.clear;
+        }
+        var range = NSRange.init()
+        range.location = 0
+        range.length = 2
+        //r
+        let rStr = cstr.substring(with: range);
+        //g
+        range.location = 2;
+        let gStr = cstr.substring(with: range)
+        //b
+        range.location = 4;
+        let bStr = cstr.substring(with: range)
+        var r: UInt32 = 0x0;
+        var g: UInt32 = 0x0;
+        var b: UInt32 = 0x0;
+        Scanner.init(string: rStr).scanHexInt32(&r);
+        Scanner.init(string: gStr).scanHexInt32(&g);
+        Scanner.init(string: bStr).scanHexInt32(&b);
+        return UIColor.init(red: CGFloat(r) / 255.0, green: CGFloat(g) / 255.0, blue: CGFloat(b) / 255.0, alpha: 1);
+    }
+
 }
 
 extension String {
     public var color: UIColor {
         return UIColor(hexString: self)
     }
+    
+    public func color(alpha: CGFloat) -> UIColor {
+        return UIColor(hexRGBString: self, alpha: alpha / 100.0) ?? self.color
+    }
 }
+
 
 // MARK: - back
 
@@ -131,6 +157,13 @@ extension UIColor {
     
     open class var lineColor: UIColor {
         return .init(hex: 0xD8D8D8)
+    }
+    
+    open class var shadowColor: UIColor {
+#if DEBUG
+        if DebugColor { return .red }
+#endif
+        return "#88888F".color(alpha: 8)
     }
 }
 

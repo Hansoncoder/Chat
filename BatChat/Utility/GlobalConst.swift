@@ -12,9 +12,15 @@ import UIKit
 let viewBgColor = UIColor.white
 let screenW = UIScreen.main.bounds.width
 let screenH = UIScreen.main.bounds.height
-let lineSize: CGFloat = 0.5
-let navHeight: CGFloat = 64
-let tabbarHeight: CGFloat = 49
+let mainScale: CGFloat = (1.0/UIScreen.main.scale)
+
+let statusBarHeight: CGFloat = UIDevice.is.iPhoneX ? 44 : 20
+let bottomSafeAreaHeight: CGFloat = UIDevice.is.iPhoneX ? 34 : 0
+let navHeight: CGFloat = 44
+let navBottom: CGFloat = statusBarHeight + navHeight
+let tabbarHeight: CGFloat = bottomSafeAreaHeight + 49
+let APPWINDOW = UIApplication.shared.keyWindow ?? UIWindow()
+
 /****** color ******/
 public func navBgColor(_ alpah: CGFloat) -> UIColor {
     return .themeBack

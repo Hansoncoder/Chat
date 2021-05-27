@@ -14,3 +14,4 @@
 @_exported import Kingfisher
 
 @_exported import RxDataSources
+@_exported import EFNavigationBar

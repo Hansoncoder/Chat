@@ -14,7 +14,7 @@ def target_pods
   pod 'MJRefresh'
   pod 'Kingfisher'
   pod 'SnapKit'
-  pod 'ETNavBarTransparent'
+  pod 'EFNavigationBar', '5.2.3'
   pod 'RxDataSources'
   pod 'URLNavigator',     '2.2.0' #Router跳转
   pod 'SKPhotoBrowser' # 图片预览器

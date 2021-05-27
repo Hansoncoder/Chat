@@ -8,27 +8,36 @@
 import UIKit
 import Chatto
 
-class BCSessionViewController: BCChatViewController {
+class BCSessionViewController: BCChatViewController, NavigationProtocol {
+    
+    lazy var navBar: EFNavigationBar = setupNavBar()
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        let addButton = UIBarButtonItem(
-            title: "Add",
-            style: .plain,
-            target: self,
-            action: #selector(addRandomMessage)
-        )
-
-        let removeButton = UIBarButtonItem(
-            title: "Remove",
-            style: .plain,
-            target: self,
-            action: #selector(removeRandomMessage)
-        )
-
-        self.navigationItem.rightBarButtonItems = [addButton, removeButton]
+        setupNav()
+        
+        /// 隐藏导航栏，调整内容布局
+        let inset = UIEdgeInsets(
+            top: navBottom, left: 0,
+            bottom: 0, right: 0)
+        layoutConfiguration = ChatLayoutConfiguration(
+            contentInsets: inset,
+            scrollIndicatorInsets: .zero)
     }
 
+    private func setupNav() {
+        navBar.title = "聊天信息"
+        navBar.titleLabel.textColor = .white
+        navBar.setRightButton(title: "添加", titleColor: .white)
+        addNavBackColor(left: "#00B6B3".color, right: "#0FE7C3".color)
+        navBar.cornerRadius(radius: 6, rectCorner: .bottom)
+        
+        
+        navBar.onRightButtonClick = { [weak self] in
+            self?.addRandomMessage()
+        }
+    }
+    
+    
     @objc
     private func addRandomMessage() {
         self.dataSource.addRandomIncomingMessage()

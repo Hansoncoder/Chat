@@ -8,6 +8,54 @@
 
 import UIKit
 
+public protocol NavigationProtocol: UIViewController {
+    var navBar: EFNavigationBar { get set }
+    func setupNavBar() -> EFNavigationBar
+    func addNavBackColor(left: UIColor, right: UIColor)
+}
+
+extension NavigationProtocol {
+    func setupNavBar() -> EFNavigationBar {
+        let textColor: UIColor = .blackText
+        EFNavigationBar.defaultStyle.titleColor = textColor
+        EFNavigationBar.defaultStyle.buttonTitleColor = textColor
+        EFNavigationBar.defaultStyle.titleFont = .pingfangMedium(17)
+        EFNavigationBar.defaultStyle.buttonTitleFont = .pingfangMedium(15)
+        EFNavigationBar.defaultStyle.height = navBottom
+        
+        let navBar = EFNavigationBar.CustomNavigationBar()
+        self.view.addSubview(navBar)
+        self.navigationController?.navigationBar.isHidden = true
+        navBar.barBackgroundImage = UIImage(named: "millcolorGrad")
+        navBar.bottomLine.bottom = navBottom
+        navBar.barBackgroundColor = .white
+        
+        if let childCount = navigationController?.children.count,
+           childCount > 1 {
+            if let image = "nav_black".image {
+                navBar.setLeftButton(image: image)
+            }
+        }
+        
+        let inset = UIEdgeInsets(top: 0, left: -10, bottom: 0, right: 10)
+        navBar.rightButton.titleEdgeInsets = inset
+        return navBar
+    }
+    
+    func addNavBackColor(left: UIColor, right: UIColor) {
+        navBar.barBackgroundColor = .clear
+        let frame = CGRect(x: 0, y: 0, width: screenW, height: navBottom)
+        let backLayer = UIView.buildGradientLayer(
+            topColor: left, bottomColor: right,
+            leftToRight: true, frame: frame)
+        backLayer.zPosition = -1
+        backLayer.cornerRadius = navBar.layer.cornerRadius
+        backLayer.maskedCorners = navBar.layer.maskedCorners
+        navBar.layer.addSublayer(backLayer)
+    }
+}
+
+
 class NavigationController: UINavigationController,UINavigationControllerDelegate {
 
     public var canBack = true
@@ -34,7 +82,7 @@ class NavigationController: UINavigationController,UINavigationControllerDelegat
         let appearance = self.navigationBar
         // 标题
         appearance.titleTextAttributes = [NSAttributedString.Key.foregroundColor:UIColor.white,
-                                          NSAttributedString.Key.font:UIFont.systemFont(ofSize: 12)]
+                                          NSAttributedString.Key.font:UIFont.systemFont(ofSize: 18)]
         // 背景
         appearance.setBackgroundImage(UIImage(color: .themeBack), for: UIBarMetrics.default)
         // 分割线

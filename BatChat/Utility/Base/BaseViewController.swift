@@ -11,12 +11,13 @@ import RxSwift
 import RxCocoa
 import Domain
 
-class BaseViewController: UIViewController {
+
+class BaseViewController: UIViewController, NavigationProtocol {
+    
+    lazy var navBar: EFNavigationBar = setupNavBar()
+    
     
     let disposeBag = DisposeBag()
-    // MARK: - 导航
-    var leftItem: CustomItem?
-    var rightItem: CustomItem?
     /// 是否允许返回收拾
     var navCanBack: Bool = true {
         didSet {
@@ -25,51 +26,53 @@ class BaseViewController: UIViewController {
         }
     }
     
-    // MARK: - system
+    // 隐藏状态栏
+    var isStatusBarHidden = false {
+        didSet {
+            self.setNeedsStatusBarAppearanceUpdate()
+        }
+    }
+
+    override var prefersStatusBarHidden: Bool {
+        return isStatusBarHidden
+    }
+
+    /// 使用底部阴影
+    open var adjustNavBarToFront = false
+    open var navBarShowShadow: Bool = false {
+        didSet {
+            if navBarShowShadow {
+                adjustNavBarToFront = true
+                navBar.setBottomLineHidden(hidden: true)
+                navBar.addCellShadow1()
+                return
+            }
+            
+            adjustNavBarToFront = false
+            navBar.removeCornerAndShadow()
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
-
         view.backgroundColor = .white
-        // Do any additional setup after loading the view.
-        automaticallyAdjustsScrollViewInsets = false
+        navBar.title = ""
+        if #available(iOS 13.0, *) {
+            modalPresentationStyle = .fullScreen
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        if adjustNavBarToFront {
+            view.bringSubviewToFront(navBar)
+        }
     }
 }
-
+/// 所有控制器，点击空白收起键盘
 extension BaseViewController {
-    
-    func setupNavColor(_ color: UIColor = .themeBack) {
-        if let nav = navigationController as? NavigationController {
-            nav.backgroud(color: color)
-        }
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        super.touchesBegan(touches, with: event)
+        view.endEditing(true)
     }
-    
-    func showLeftBar(_ imageName: String?, frame: CGRect = .zero) {
-        if leftItem != nil {
-            return
-        }
-        leftItem = CustomItem(imageName)
-        navigationItem.leftBarButtonItem = leftItem
-        
-    }
-    
-    func showRightBar(_ imageName: String, frame: CGRect = .zero) {
-        if rightItem != nil {
-            return
-        }
-        
-        rightItem = CustomItem(imageName)
-        navigationItem.rightBarButtonItem = rightItem
-    }
-    
-    func setupHiddentNav(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(true, animated: animated)
-        navCanBack = false
-    }
-    
-    func setupShowNav(_ animated: Bool) {
-        navigationController?.setNavigationBarHidden(false, animated: animated)
-    }
-    
-    
 }
-
