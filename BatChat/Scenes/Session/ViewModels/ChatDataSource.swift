@@ -77,7 +77,7 @@ class ChatDataSource: ChatDataSourceProtocol {
         self.slidingWindow.insertItem(message, position: .bottom)
         self.delegate?.chatDataSourceDidUpdate(self)
     }
-
+    
     func addRandomIncomingMessage() {
         let message = ChatMessageFactory.makeRandomMessage("\(self.nextMessageId)", isIncoming: true)
         self.nextMessageId += 1

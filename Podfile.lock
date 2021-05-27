@@ -29,6 +29,7 @@ PODS:
   - RxSwift (5.1.1)
   - SKPhotoBrowser (6.1.0)
   - SnapKit (5.0.1)
+  - SocketRocket (0.5.1)
   - SwiftyJSON (5.0.0)
   - URLNavigator (2.2.0)
 
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - RxSwift (~> 5.0)
   - SKPhotoBrowser
   - SnapKit
+  - SocketRocket
   - SwiftyJSON
   - URLNavigator (= 2.2.0)
 
@@ -72,6 +74,7 @@ SPEC REPOS:
     - RxSwift
     - SKPhotoBrowser
     - SnapKit
+    - SocketRocket
     - SwiftyJSON
     - URLNavigator
 
@@ -94,9 +97,10 @@ SPEC CHECKSUMS:
   RxSwift: 81470a2074fa8780320ea5fe4102807cb7118178
   SKPhotoBrowser: 343de95d89dc7913763c5dda243cc6e606e4a168
   SnapKit: 97b92857e3df3a0c71833cce143274bf6ef8e5eb
+  SocketRocket: d57c7159b83c3c6655745cd15302aa24b6bae531
   SwiftyJSON: 36413e04c44ee145039d332b4f4e2d3e8d6c4db7
   URLNavigator: 0bffc3efdeb2d97f7b5eec7ac82d290f4a099431
 
-PODFILE CHECKSUM: a41a3b066aee6eab68341143b92b13c17bcfce57
+PODFILE CHECKSUM: 561cdf492c0021003817f2f74a1a0539a2429a51
 
 COCOAPODS: 1.10.0

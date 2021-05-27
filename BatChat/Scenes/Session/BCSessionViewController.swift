@@ -44,6 +44,7 @@ class BCSessionViewController: BCChatViewController {
 class BCChatViewController: BaseChatViewController {
     var shouldUseAlternativePresenter: Bool = false
 
+    let viewModel = BCSessionViewModel()
     var inputTextView: ChatInputBar?
     let messagesSelector = BaseMessagesSelector()
     lazy var messageSender: ChatMessageSender = {

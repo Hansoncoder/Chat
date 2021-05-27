@@ -10,6 +10,11 @@
 		0ED6730BCBD43BFC676E2C61 /* Pods_Domain.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = FC9603DB5850B55C17AD8631 /* Pods_Domain.framework */; };
 		5D80721D7E22338D9F85FBBF /* Pods_BatChat.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 40AF006FE9370853776FDD91 /* Pods_BatChat.framework */; };
 		6CD963C84735413EEEB3782D /* Pods_NetworkPlatform.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 99E4191A2721DB54B7981141 /* Pods_NetworkPlatform.framework */; };
+		C002E36E265E501E00E291C6 /* BCSessionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E36D265E501E00E291C6 /* BCSessionViewModel.swift */; };
+		C002E373265E540000E291C6 /* Observable+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E371265E53C800E291C6 /* Observable+Ext.swift */; };
+		C002E374265E540000E291C6 /* ErrorTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E36F265E52AC00E291C6 /* ErrorTracker.swift */; };
+		C002E37A265E564700E291C6 /* SocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E379265E564700E291C6 /* SocketService.swift */; };
+		C002E37C265E58CF00E291C6 /* ChatSocketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C002E37B265E58CF00E291C6 /* ChatSocketService.swift */; };
 		C007689525E4A83B0098DF89 /* ScreenMetric.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007688325E4A83A0098DF89 /* ScreenMetric.swift */; };
 		C007689625E4A83B0098DF89 /* UIImage+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007688425E4A83A0098DF89 /* UIImage+Additions.swift */; };
 		C007689725E4A83B0098DF89 /* UIView+Additions.swift in Sources */ = {isa = PBXBuildFile; fileRef = C007688525E4A83A0098DF89 /* UIView+Additions.swift */; };
@@ -225,6 +230,11 @@
 		486C20FD8F9D9C3A2EEB3A97 /* Pods-BatChat.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BatChat.debug.xcconfig"; path = "Target Support Files/Pods-BatChat/Pods-BatChat.debug.xcconfig"; sourceTree = "<group>"; };
 		825453482B5EAF099FBA771F /* Pods-NetworkPlatform.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-NetworkPlatform.debug.xcconfig"; path = "Target Support Files/Pods-NetworkPlatform/Pods-NetworkPlatform.debug.xcconfig"; sourceTree = "<group>"; };
 		99E4191A2721DB54B7981141 /* Pods_NetworkPlatform.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_NetworkPlatform.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		C002E36D265E501E00E291C6 /* BCSessionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BCSessionViewModel.swift; sourceTree = "<group>"; };
+		C002E36F265E52AC00E291C6 /* ErrorTracker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ErrorTracker.swift; sourceTree = "<group>"; };
+		C002E371265E53C800E291C6 /* Observable+Ext.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Observable+Ext.swift"; sourceTree = "<group>"; };
+		C002E379265E564700E291C6 /* SocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocketService.swift; sourceTree = "<group>"; };
+		C002E37B265E58CF00E291C6 /* ChatSocketService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatSocketService.swift; sourceTree = "<group>"; };
 		C007688325E4A83A0098DF89 /* ScreenMetric.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ScreenMetric.swift; sourceTree = "<group>"; };
 		C007688425E4A83A0098DF89 /* UIImage+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIImage+Additions.swift"; sourceTree = "<group>"; };
 		C007688525E4A83A0098DF89 /* UIView+Additions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIView+Additions.swift"; sourceTree = "<group>"; };
@@ -598,10 +608,11 @@
 		C07B2E3625CD2F3700C2AB01 /* Session */ = {
 			isa = PBXGroup;
 			children = (
+				C07B2E3725CD2F6400C2AB01 /* BCSessionViewController.swift */,
+				C002E36D265E501E00E291C6 /* BCSessionViewModel.swift */,
 				C00768AF25E4B80B0098DF89 /* Chat Items */,
 				C0A4D2F225E2091B00013B31 /* ViewModels */,
 				C0A4D22325E2065600013B31 /* Base */,
-				C07B2E3725CD2F6400C2AB01 /* BCSessionViewController.swift */,
 			);
 			path = Session;
 			sourceTree = "<group>";
@@ -866,6 +877,8 @@
 				C0ED3D0F25CAA7A600505906 /* Protocol */,
 				C0C79EF6265CEEFB0025C69A /* BCHUD.swift */,
 				C0C79EF8265CEF430025C69A /* Toast.swift */,
+				C002E36F265E52AC00E291C6 /* ErrorTracker.swift */,
+				C002E371265E53C800E291C6 /* Observable+Ext.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -949,6 +962,8 @@
 				C0ED3DC125CAAFA700505906 /* Network.swift */,
 				C0ED3DC225CAAFA700505906 /* GlobalConfiguration.swift */,
 				C0ED3DC325CAAFA700505906 /* AppEnvironment.swift */,
+				C002E379265E564700E291C6 /* SocketService.swift */,
+				C002E37B265E58CF00E291C6 /* ChatSocketService.swift */,
 			);
 			path = Network;
 			sourceTree = "<group>";
@@ -1293,6 +1308,7 @@
 				C0ED3D6B25CAAABB00505906 /* UILabel+Extension.swift in Sources */,
 				C0A4D2EA25E2066B00013B31 /* PhotosInputCell.swift in Sources */,
 				C068FC5925E742C300A2D7AD /* EmojiChatInputItem.swift in Sources */,
+				C002E374265E540000E291C6 /* ErrorTracker.swift in Sources */,
 				C0ED3D2225CAA86E00505906 /* BaseViewController.swift in Sources */,
 				C0E2B89025E63F0200F7B092 /* ChatInputBar.swift in Sources */,
 				C0A4D2E325E2066B00013B31 /* PhotosInputWithPlaceholdersDataProvider.swift in Sources */,
@@ -1344,6 +1360,7 @@
 				C012779325EE155E00DE8ADD /* PhotoMessagePresenter.swift in Sources */,
 				C0A4D2EB25E2066B00013B31 /* PhotosInputDataProvider.swift in Sources */,
 				C0ED3D7425CAAABB00505906 /* UIView+AddClickedEvent.swift in Sources */,
+				C002E373265E540000E291C6 /* Observable+Ext.swift in Sources */,
 				C0ED3D7725CAAABB00505906 /* NSArray+Extsion.swift in Sources */,
 				C0C79EF3265CD6B90025C69A /* Router.swift in Sources */,
 				C00768A525E4A83B0098DF89 /* CGPoint+Additions.swift in Sources */,
@@ -1365,6 +1382,7 @@
 				C00768C125E4B8EC0098DF89 /* TextMessageCollectionViewCellDefaultStyle.swift in Sources */,
 				C0C79EF9265CEF430025C69A /* Toast.swift in Sources */,
 				C012779125EE155E00DE8ADD /* PhotoMessagePresenterBuilder.swift in Sources */,
+				C002E36E265E501E00E291C6 /* BCSessionViewModel.swift in Sources */,
 				C007689F25E4A83B0098DF89 /* Cache.swift in Sources */,
 				C00768D125E4B9490098DF89 /* BaseMessageModel.swift in Sources */,
 				C0A4D2DF25E2066B00013B31 /* DeviceImagePicker.swift in Sources */,
@@ -1404,6 +1422,7 @@
 				C0ED3DE725CAB18300505906 /* _CleanJSONDecodingStorage.swift in Sources */,
 				C0ED3DEA25CAB18300505906 /* _CleanJSONDecoder+Unbox.swift in Sources */,
 				C0ED3DC425CAAFA700505906 /* Network.swift in Sources */,
+				C002E37C265E58CF00E291C6 /* ChatSocketService.swift in Sources */,
 				C0ED3DE925CAB18300505906 /* CleanDecoder.swift in Sources */,
 				C0ED3DF225CAB18300505906 /* AnyEncodable.swift in Sources */,
 				C0ED3DFD25CAB3D800505906 /* UseCaseProvider.swift in Sources */,
@@ -1419,6 +1438,7 @@
 				C0ED3DE825CAB18300505906 /* DecodingStrategy.swift in Sources */,
 				C0ED3DBD25CAAF4100505906 /* UsersNetwork.swift in Sources */,
 				C0ED3DE225CAB18300505906 /* _CleanJSONDecoder+SingleValueDecodingContainer.swift in Sources */,
+				C002E37A265E564700E291C6 /* SocketService.swift in Sources */,
 				C0ED3DEF25CAB18300505906 /* Defaultable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
