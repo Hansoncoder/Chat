@@ -25,15 +25,25 @@ class BCSessionViewController: BCChatViewController, NavigationProtocol {
     }
 
     private func setupNav() {
-        navBar.title = "聊天信息"
-        navBar.titleLabel.textColor = .white
-        navBar.setRightButton(title: "添加", titleColor: .white)
-        addNavBackColor(left: "#00B6B3".color, right: "#0FE7C3".color)
-        navBar.cornerRadius(radius: 6, rectCorner: .bottom)
+        let statuText = "在线"
+        let text = "张三 \(statuText)".attrText(
+            .pingfangMedium(16),
+            color: .blackText)
+        text.update(
+            color: .grayText,
+            font: .pingfang(13),
+            text: statuText)
+        navBar.titleLabel.attributedText = text
         
+        let imageView = UIImageView(image: "user_avatar".image)
+        imageView.layer.cornerRadius = 18
+        imageView.size = CGSize(width: 36, height: 36)
+        imageView.right = screenW - 20
+        imageView.centerY = navHeight * 0.5 + statusBarHeight
+        navBar.addSubview(imageView)
         
-        navBar.onRightButtonClick = { [weak self] in
-            self?.addRandomMessage()
+        imageView.addClick(on: self) { (self) in
+            self.addRandomMessage()
         }
     }
     

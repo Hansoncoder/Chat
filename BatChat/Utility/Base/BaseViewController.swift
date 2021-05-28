@@ -56,7 +56,7 @@ class BaseViewController: UIViewController, NavigationProtocol {
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .random
-        navBar.title = ""
+        navBar.title = title
         if #available(iOS 13.0, *) {
             modalPresentationStyle = .fullScreen
         }

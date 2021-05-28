@@ -55,6 +55,25 @@ extension NavigationProtocol {
     }
 }
 
+public enum EFNavigationBarItemType {
+    case left
+    case right
+}
+
+extension EFNavigationBar {
+    func setupItemImage(_ image: UIImage?, type: EFNavigationBarItemType) {
+        guard let image = image else {
+            return
+        }
+        switch type {
+        case .left:
+            setLeftButton(image: image)
+        default:
+            setRightButton(image: image)
+        }
+    }
+}
+
 
 class NavigationController: UINavigationController,UINavigationControllerDelegate {
 
