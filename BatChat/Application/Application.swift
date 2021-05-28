@@ -9,7 +9,7 @@ final class Application {
 
     func configureMainInterface(in window: UIWindow) {
         let vc = NavigationController()
-        let navigator = BCDefaultHomeNavigator(navigator: vc)
+        let navigator = DefaulAccountNavigator(navigator: vc)
     
         window.rootViewController = vc
         navigator.showDefault()

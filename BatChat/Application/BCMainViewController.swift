@@ -10,15 +10,15 @@ import Domain
 import NetworkPlatform
 
 public enum TabbarType {
-    case girl
-    case boy
-    case chat
+    case session
+    case contact
+    case community
     case profile
 }
 
 // FIXME: 控制子控制器
 func vcs() -> [TabbarType] {
-    return [.girl, .boy, .chat , .profile]
+    return [.session, .contact, .community , .profile]
 }
 
 // AMRK: - 主体
@@ -96,21 +96,21 @@ extension DSMainViewController {
 
     private func setupVC(_ type: TabbarType) -> TabbarModel {
         switch type {
-        case .girl:
+        case .session:
             return TabbarModel(
-                navType: BCDefaultHomeNavigator.self,
+                navType: DefaultSessionNavigator.self,
                 title: "聊天", icon: "tab_girl")
-        case .boy:
+        case .contact:
             return TabbarModel(
-                navType: BCDefaultHomeNavigator.self,
-                title: "通讯录", icon: "tab_boy")
-        case .chat:
+                navType: DefaultContactNavigator.self,
+                title: "联系人", icon: "tab_boy")
+        case .community:
             return TabbarModel(
-                navType: BCDefaultHomeNavigator.self,
-                title: "兴趣", icon: "tab_message")
+                navType: DefaultConmmunityNavigator.self,
+                title: "动态", icon: "tab_message")
         case .profile:
             return TabbarModel(
-                navType: BCDefaultHomeNavigator.self,
+                navType: DefaultProfilesNavigator.self,
                 title: "我的", icon: "tab_mine")
         }
     }

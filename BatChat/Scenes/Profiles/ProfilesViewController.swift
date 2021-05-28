@@ -1,13 +1,13 @@
 //
-//  UserProfileViewModel.swift
+//  ProfilesViewController.swift
 //  BatChat
 //
-//  Created by Hanson on 2021/5/27.
+//  Created by Hanson on 2021/5/28.
 //
 
 import UIKit
 
-class UserProfileViewModel: UIView {
+class ProfilesViewController: BaseViewController {
 
     /*
     // Only override draw() if you perform custom drawing.

@@ -1,27 +1,27 @@
 //
-//  HomeNavigator.swift
+//  ConmmunityNavigator.swift
 //  BatChat
 //
-//  Created by Hanson on 2021/2/3.
+//  Created by Hanson on 2021/5/28.
 //
 
 import UIKit
-protocol BCHomeNavigator {
+
+protocol ConmmunityNavigator: BCNavigator {
+    
 }
 
-class BCDefaultHomeNavigator: BCHomeNavigator, BCNavigator {
-
+class DefaultConmmunityNavigator: ConmmunityNavigator {
     var navigator: NavigationController
     var services: UseCaseProvider = netwokData
-
     required init(navigator: NavigationController) {
         self.navigator = navigator
     }
     
+    
     func showDefault() {
-        let vc = BCSessionViewController()
-//        vc.view.backgroundColor = .red
-//        vc.viewModel = BCHomeViewModel(navigator: navigator)
+        let vc = ConmmunityViewController()
         navigator.pushViewController(vc, animated: true)
     }
+    
 }

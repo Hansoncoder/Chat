@@ -8,5 +8,6 @@
 import RxSwift
 
 public protocol UserUseCase {
-    
+    func login(userName: String, passwd: String) -> Observable<User>
+    func sendCode(phoneNumber: String) -> Observable<Bool>
 }
