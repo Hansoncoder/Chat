@@ -83,16 +83,16 @@ class ChatMessageFactory {
 
     private class func makeRandomPhotoMessage(_ uid: String, isIncoming: Bool) -> ChatPhotoMessageModel {
         var imageSize = CGSize.zero
-        switch arc4random_uniform(100) % 3 {
-        case 0:
+//        switch arc4random_uniform(100) % 3 {
+//        case 0:
             imageSize = CGSize(width: 400, height: 300)
-        case 1:
-            imageSize = CGSize(width: 300, height: 400)
-        default:
-            imageSize = CGSize(width: 300, height: 300)
-        }
+//        case 1:
+//            imageSize = CGSize(width: 300, height: 400)
+//        default:
+//            imageSize = CGSize(width: 300, height: 300)
+//        }
 
-        var imageName: String = "icon_tab_boy_sel"
+        var imageName: String = "test"
 //        switch arc4random_uniform(100) % 3 {
 //        case 0:
 //            imageName = "pic-test-1"
