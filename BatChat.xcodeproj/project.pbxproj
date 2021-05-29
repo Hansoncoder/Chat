@@ -212,6 +212,8 @@
 		C0FB918C2661D8B400FEA99F /* TableViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB918B2661D8B400FEA99F /* TableViewFactory.swift */; };
 		C0FB918F2661E8EF00FEA99F /* BaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB918E2661E8EF00FEA99F /* BaseTableCell.swift */; };
 		C0FB91912662034B00FEA99F /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB91902662034B00FEA99F /* InsetLabel.swift */; };
+		C0FB919526623B7500FEA99F /* SessionPopView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB919426623B7500FEA99F /* SessionPopView.swift */; };
+		C0FB919726623C5300FEA99F /* Delegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB919626623C5300FEA99F /* Delegate.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -458,6 +460,8 @@
 		C0FB918B2661D8B400FEA99F /* TableViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFactory.swift; sourceTree = "<group>"; };
 		C0FB918E2661E8EF00FEA99F /* BaseTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCell.swift; sourceTree = "<group>"; };
 		C0FB91902662034B00FEA99F /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
+		C0FB919426623B7500FEA99F /* SessionPopView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionPopView.swift; sourceTree = "<group>"; };
+		C0FB919626623C5300FEA99F /* Delegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Delegate.swift; sourceTree = "<group>"; };
 		D54A917C4BC9B89ABEB7CE4F /* Pods-BatChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BatChat.release.xcconfig"; path = "Target Support Files/Pods-BatChat/Pods-BatChat.release.xcconfig"; sourceTree = "<group>"; };
 		FC9603DB5850B55C17AD8631 /* Pods_Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -677,6 +681,7 @@
 			children = (
 				C0FB917F2660D23D00FEA99F /* SessionListCell.swift */,
 				C0FB91812660D24E00FEA99F /* SessionListCellVM.swift */,
+				C0FB919426623B7500FEA99F /* SessionPopView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -944,6 +949,7 @@
 				C002E36F265E52AC00E291C6 /* ErrorTracker.swift */,
 				C0FB917D2660A30600FEA99F /* MJRefresh+Rx.swift */,
 				C002E371265E53C800E291C6 /* Observable+Ext.swift */,
+				C0FB919626623C5300FEA99F /* Delegate.swift */,
 			);
 			path = Utility;
 			sourceTree = "<group>";
@@ -1429,6 +1435,7 @@
 				C0E2B89A25E63FE200F7B092 /* TimeSeparatorCollectionViewCell.swift in Sources */,
 				C0FB91822660D24E00FEA99F /* SessionListCellVM.swift in Sources */,
 				C0A4D2CE25E2066B00013B31 /* ChatInputBarAppearance.swift in Sources */,
+				C0FB919726623C5300FEA99F /* Delegate.swift in Sources */,
 				C0FB916A26609DE800FEA99F /* ConmmunityViewModel.swift in Sources */,
 				C00768BA25E4B8930098DF89 /* TextMessageModel.swift in Sources */,
 				C012779425EE155E00DE8ADD /* PhotoMessageCollectionViewCell.swift in Sources */,
@@ -1490,6 +1497,7 @@
 				C00768A525E4A83B0098DF89 /* CGPoint+Additions.swift in Sources */,
 				C00768DD25E4D8BB0098DF89 /* ChatMessageSender.swift in Sources */,
 				C0ED3D8625CAAB8900505906 /* BundleInfoUtils.swift in Sources */,
+				C0FB919526623B7500FEA99F /* SessionPopView.swift in Sources */,
 				C0ED3D8A25CAABC800505906 /* GlobalConst.swift in Sources */,
 				C0FB917E2660A30600FEA99F /* MJRefresh+Rx.swift in Sources */,
 				C00768D525E4B9490098DF89 /* BaseMessageCollectionViewCellDefaultStyle.swift in Sources */,

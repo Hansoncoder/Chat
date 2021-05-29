@@ -26,6 +26,16 @@ class SessionListViewController: BaseViewController {
         navBar.titleLabel.textColor = .white
         navBar.setRightButton(image: "icon_nav_add_white".image!)
         addNavBackColor(left: "#00B6B3".color, right: "#0FE7C3".color)
+        
+        navBar.onRightButtonClick = { [weak self] in
+            guard let button = self?.navBar.rightButton else { return }
+            
+            let list = SessionPopView.sessionCreatList()
+            SessionPopView.show(button, dataSource: list, corner: .bottomLeft, tx: -8) {[weak self] index in
+                let vc = BCSessionViewController()
+                self?.navigationController?.pushViewController(vc, animated: true)
+            }
+        }
     }
 
     // MARK: - bind
