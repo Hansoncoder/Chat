@@ -9,6 +9,7 @@
 import Foundation
 
 public protocol UseCaseProvider {
-    
     func makeUserUseCase() -> UserUseCase
+
+    func makeSessionUseCase() -> SessionUseCase
 }

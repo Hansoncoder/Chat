@@ -163,6 +163,10 @@ extension UIColor {
         return .init(hex: 0xF5F5F5)
     }
     
+    open class var redBack: UIColor {
+        return .init(hex: 0xFA5151)
+    }
+    
     open class var lineColor: UIColor {
         return .init(hex: 0xD8D8D8)
     }
@@ -180,7 +184,7 @@ extension UIColor {
 extension UIColor {
 
     open class var blackText: UIColor {
-        return .init(hex: 0x333333)
+        return .init(hex: 0x191A23)
     }
 
     open class var darkGrayText: UIColor {
@@ -188,6 +192,10 @@ extension UIColor {
     }
     
     open class var grayText: UIColor {
-        return .init(hex: 0x999999)
+        return .init(hex: 0xADB2B9)
+    }
+    
+    open class var orangeText: UIColor {
+        return .init(hex: 0xFA9D3B)
     }
 }

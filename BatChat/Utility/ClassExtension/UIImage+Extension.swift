@@ -25,6 +25,14 @@ extension UIImage {
 }
 
 
+// MARK: - 固定资源图片
+extension UIImage {
+    /// 占位头像
+    static var userHead = "user_avatar".image
+
+    
+}
+
 public extension UIColor {
     var image: UIImage? {
         let rect = CGRect.init(x: 0.0, y: 0.0, width: 1.0, height: 1.0)

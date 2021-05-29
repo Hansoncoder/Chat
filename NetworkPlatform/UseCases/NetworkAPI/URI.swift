@@ -20,7 +20,7 @@ enum URI {
             return rawValue.appendId(param)
         }
     }
-    
+
     enum Account: String, URLAble {
         case sendCode = "/api/sms/sendcode"
         case regist = "/api/login/regist"
@@ -28,39 +28,37 @@ enum URI {
             return rawValue.appendId(param)
         }
     }
-    
+
     enum User: String, URLAble {
         case regist = "/api/login/regist"
         func value(_ param: [String: Any]? = nil) -> String {
             return rawValue.appendId(param)
         }
     }
-    
 }
 
+// MARK: - 处理数据参数
 
-//MARK: - 处理数据参数
 extension String {
-    
     /// 拼接参数 XXX/{param["id"]}，
     /// param的 key 包含 "id"， value为Int或String
     public func appendId(_ param: [String: Any]?) -> String {
         guard let param = param else {
-           return self
+            return self
         }
-        
+
         if let id = param["id"] as? Int {
             return self + "/\(id)"
         }
-        
+
         if let id = param["id"] as? String {
             return self + "/\(id)"
         }
-        
+
         #if DEBUG
-        print("\(self):参数拼接错误")
+            print("\(self):参数拼接错误")
         #endif
-        
+
         return self
     }
 }

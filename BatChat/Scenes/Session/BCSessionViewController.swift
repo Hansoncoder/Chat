@@ -71,7 +71,7 @@ class BCChatViewController: BaseChatViewController {
     }()
     
     lazy var dataSource: ChatDataSource = {
-        let dataSource = ChatDataSource(count: 2, pageSize: 100)
+        let dataSource = ChatDataSource(count: 10, pageSize: 100)
         self.chatDataSource = dataSource
         return dataSource
     }()

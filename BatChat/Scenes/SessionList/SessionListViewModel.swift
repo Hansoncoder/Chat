@@ -9,11 +9,16 @@ import UIKit
 
 final class SessionListViewModel: ViewModelType {
     lazy var disposeBag = DisposeBag()
+    private let useCase = netwokData.makeSessionUseCase()
     struct Input {
-        let toSession: Driver<Void>
+        let trigger: Driver<Void>
+        let selection: Driver<IndexPath>
+        let tap: Driver<IndexPath>
     }
     
     struct Output {
+        let fetching: Driver<Bool>
+        let list: Driver<[SessionListCellVM]>
     }
     
     private let navigator: SessionListNavigator
@@ -21,14 +26,36 @@ final class SessionListViewModel: ViewModelType {
         self.navigator = navigator
     }
     
-    func transform(input: SessionListViewModel.Input) -> SessionListViewModel.Output {
-        input.toSession.do { _ in
-            self.navigator.toSession()
+    func transform(input: Input) -> Output {
+        let activityIndicator =  BehaviorRelay<Bool>(value: false)
+        let errorTracker = ErrorTracker()
+        
+        let list = input.trigger.flatMapLatest { page in
+            self.useCase.sessionList()
+            .trackActivity(activityIndicator)
+            .trackError(errorTracker)
+            .asDriverOnErrorJustComplete()
+        }.map {
+            $0.map { SessionListCellVM(with: $0) }
         }
+        
+        input.selection.withLatestFrom(list) {
+            (indexPath, list) -> SessionListCellVM in
+            return list[indexPath.row]
+        }
+        .do(onNext:navigator.toSession)
         .drive()
         .disposed(by: disposeBag)
         
-
-        return SessionListViewModel.Output()
+        input.tap.withLatestFrom(list) {
+            (indexPath, list) -> SessionListCellVM in
+            return list[indexPath.row]
+        }
+        .do(onNext:navigator.toSession)
+        .drive()
+        .disposed(by: disposeBag)
+        
+        return Output(fetching: activityIndicator.asDriver(),
+                      list: list)
     }
 }

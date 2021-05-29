@@ -6,17 +6,25 @@
 //  Copyright © 2017 sergdort. All rights reserved.
 //
 
-import Foundation
 import Alamofire
 import Domain
+import Foundation
 import RxAlamofire
 import RxSwift
 
+final class NetworkProvider {
+    /// APP服务环境
+    private let domain: String = AppEnvironment.URL.base
+
+    public func makeNetwork<M: ECodable>(_ type: M.Type) -> Network<M> {
+        return Network<M>(domain)
+    }
+}
 
 public struct NetworkData<T: Decodable>: Decodable {
-    public var code : Int
-    public var data : T?
-    public var msg : String
+    public var code: Int
+    public var data: T?
+    public var msg: String
 
     init(code: Int,
          msg: String,
@@ -25,7 +33,7 @@ public struct NetworkData<T: Decodable>: Decodable {
         self.msg = msg
         self.data = data
     }
-    
+
     public func isSuccess() -> Bool {
         return code == 200
     }
@@ -43,14 +51,13 @@ extension Network {
 }
 
 final class Network<T: Decodable> {
-
     private let endPoint: String
     private let scheduler: ConcurrentDispatchQueueScheduler
     private let overTime = DispatchTimeInterval.seconds(5)
 
     init(_ endPoint: String) {
         self.endPoint = endPoint
-        self.scheduler = ConcurrentDispatchQueueScheduler(qos: DispatchQoS(qosClass: DispatchQoS.QoSClass.background, relativePriority: 1))
+        scheduler = ConcurrentDispatchQueueScheduler(qos: DispatchQoS(qosClass: DispatchQoS.QoSClass.background, relativePriority: 1))
     }
 
     func requestList(_ path: String, method: Alamofire.HTTPMethod = .get, parameters: [String: Any]) -> Observable<[T]> {
@@ -83,5 +90,3 @@ final class Network<T: Decodable> {
             })
     }
 }
-
-

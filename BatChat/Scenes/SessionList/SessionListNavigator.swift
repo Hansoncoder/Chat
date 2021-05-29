@@ -8,7 +8,7 @@
 import UIKit
 
 protocol SessionListNavigator: BCNavigator {
-    func toSession()
+    func toSession(_ vm: SessionListCellVM)
 }
 
 class DefaultSessionNavigator: SessionListNavigator {
@@ -24,7 +24,7 @@ class DefaultSessionNavigator: SessionListNavigator {
         navigator.pushViewController(vc, animated: true)
     }
     
-    func toSession() {
+    func toSession(_ vm: SessionListCellVM) {
         let vc = BCSessionViewController()
         navigator.pushViewController(vc, animated: true)
     }

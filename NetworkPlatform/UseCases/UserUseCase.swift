@@ -6,23 +6,31 @@
 //  Copyright © 2020 Hanson. All rights reserved.
 //
 
-import Foundation
 import Domain
+import Foundation
 import RxSwift
 
-let networkProvider = NetworkProvider()
 final class UserUseCase: Domain.UserUseCase {
-    
-    private let network = networkProvider.makeUsersNetwork()
-
     func login(userName: String, passwd: String) -> Observable<User> {
-        return self.network.login(userName, passwd)
+        let network = networkProvider.makeNetwork(User.self)
+        let parameters = ["phone": userName, "randomCode": passwd]
+        let path = URI.User.regist.value()
+        return network.requestModel(path, method: .post, parameters: parameters)
     }
-    
+
     func sendCode(phoneNumber: String) -> Observable<Bool> {
-        self.network.sendCode(phoneNumber: phoneNumber)
+        let network = networkProvider.makeNetwork(String.self)
+        let parameters = ["phone": phoneNumber, "id": phoneNumber]
+        let path = URI.Account.sendCode.value(parameters)
+        return network.requestModel(path, method: .post, parameters: parameters).flatMapLatest { _ in
+            Observable.create { observer -> Disposable in
+                observer.on(.next(true))
+                observer.on(.completed)
+                return Disposables.create()
+            }
+        }
     }
-    
+
     func list() -> Observable<[User]> {
         return Observable.create { observer -> Disposable in
             let json = ["userName": "sd001", "phone": "123456"]

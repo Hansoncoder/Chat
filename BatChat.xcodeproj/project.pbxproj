@@ -164,9 +164,7 @@
 		C0ED3D8F25CAACA100505906 /* UseCaseProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED3D8E25CAACA100505906 /* UseCaseProvider.swift */; };
 		C0ED3DAE25CAAEC900505906 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED3DAD25CAAEC900505906 /* UserUseCase.swift */; };
 		C0ED3DB225CAAEEF00505906 /* UserUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED3DB125CAAEEF00505906 /* UserUseCase.swift */; };
-		C0ED3DBA25CAAF4100505906 /* NetworkProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED3DB625CAAF4100505906 /* NetworkProvider.swift */; };
 		C0ED3DBC25CAAF4100505906 /* URI.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED3DB825CAAF4100505906 /* URI.swift */; };
-		C0ED3DBD25CAAF4100505906 /* UsersNetwork.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED3DB925CAAF4100505906 /* UsersNetwork.swift */; };
 		C0ED3DC425CAAFA700505906 /* Network.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED3DC125CAAFA700505906 /* Network.swift */; };
 		C0ED3DC525CAAFA700505906 /* GlobalConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED3DC225CAAFA700505906 /* GlobalConfiguration.swift */; };
 		C0ED3DC625CAAFA700505906 /* AppEnvironment.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0ED3DC325CAAFA700505906 /* AppEnvironment.swift */; };
@@ -206,6 +204,14 @@
 		C0FB917926609F3000FEA99F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB917826609F3000FEA99F /* LoginViewController.swift */; };
 		C0FB917C2660A1D700FEA99F /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB917B2660A1D700FEA99F /* User.swift */; };
 		C0FB917E2660A30600FEA99F /* MJRefresh+Rx.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB917D2660A30600FEA99F /* MJRefresh+Rx.swift */; };
+		C0FB91802660D23D00FEA99F /* SessionListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB917F2660D23D00FEA99F /* SessionListCell.swift */; };
+		C0FB91822660D24E00FEA99F /* SessionListCellVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB91812660D24E00FEA99F /* SessionListCellVM.swift */; };
+		C0FB91842660D32600FEA99F /* SessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB91832660D32600FEA99F /* SessionUseCase.swift */; };
+		C0FB91862660D39900FEA99F /* SessionUseCase.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB91852660D39900FEA99F /* SessionUseCase.swift */; };
+		C0FB91882660D3F400FEA99F /* Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB91872660D3F400FEA99F /* Session.swift */; };
+		C0FB918C2661D8B400FEA99F /* TableViewFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB918B2661D8B400FEA99F /* TableViewFactory.swift */; };
+		C0FB918F2661E8EF00FEA99F /* BaseTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB918E2661E8EF00FEA99F /* BaseTableCell.swift */; };
+		C0FB91912662034B00FEA99F /* InsetLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C0FB91902662034B00FEA99F /* InsetLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -404,9 +410,7 @@
 		C0ED3D8E25CAACA100505906 /* UseCaseProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UseCaseProvider.swift; sourceTree = "<group>"; };
 		C0ED3DAD25CAAEC900505906 /* UserUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
 		C0ED3DB125CAAEEF00505906 /* UserUseCase.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserUseCase.swift; sourceTree = "<group>"; };
-		C0ED3DB625CAAF4100505906 /* NetworkProvider.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NetworkProvider.swift; sourceTree = "<group>"; };
 		C0ED3DB825CAAF4100505906 /* URI.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URI.swift; sourceTree = "<group>"; };
-		C0ED3DB925CAAF4100505906 /* UsersNetwork.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UsersNetwork.swift; sourceTree = "<group>"; };
 		C0ED3DC125CAAFA700505906 /* Network.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Network.swift; sourceTree = "<group>"; };
 		C0ED3DC225CAAFA700505906 /* GlobalConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GlobalConfiguration.swift; sourceTree = "<group>"; };
 		C0ED3DC325CAAFA700505906 /* AppEnvironment.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppEnvironment.swift; sourceTree = "<group>"; };
@@ -446,6 +450,14 @@
 		C0FB917826609F3000FEA99F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		C0FB917B2660A1D700FEA99F /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C0FB917D2660A30600FEA99F /* MJRefresh+Rx.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "MJRefresh+Rx.swift"; sourceTree = "<group>"; };
+		C0FB917F2660D23D00FEA99F /* SessionListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionListCell.swift; sourceTree = "<group>"; };
+		C0FB91812660D24E00FEA99F /* SessionListCellVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionListCellVM.swift; sourceTree = "<group>"; };
+		C0FB91832660D32600FEA99F /* SessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUseCase.swift; sourceTree = "<group>"; };
+		C0FB91852660D39900FEA99F /* SessionUseCase.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionUseCase.swift; sourceTree = "<group>"; };
+		C0FB91872660D3F400FEA99F /* Session.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Session.swift; sourceTree = "<group>"; };
+		C0FB918B2661D8B400FEA99F /* TableViewFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TableViewFactory.swift; sourceTree = "<group>"; };
+		C0FB918E2661E8EF00FEA99F /* BaseTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseTableCell.swift; sourceTree = "<group>"; };
+		C0FB91902662034B00FEA99F /* InsetLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InsetLabel.swift; sourceTree = "<group>"; };
 		D54A917C4BC9B89ABEB7CE4F /* Pods-BatChat.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BatChat.release.xcconfig"; path = "Target Support Files/Pods-BatChat/Pods-BatChat.release.xcconfig"; sourceTree = "<group>"; };
 		FC9603DB5850B55C17AD8631 /* Pods_Domain.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Domain.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -663,6 +675,8 @@
 		C015E801265F571F005B824F /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				C0FB917F2660D23D00FEA99F /* SessionListCell.swift */,
+				C0FB91812660D24E00FEA99F /* SessionListCellVM.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -703,6 +717,7 @@
 		C0A4D22325E2065600013B31 /* Base */ = {
 			isa = PBXGroup;
 			children = (
+				C0FB918D2661E8CB00FEA99F /* Views */,
 				C007688225E4A83A0098DF89 /* Common */,
 				C0A4D26625E2066B00013B31 /* Input */,
 				C00768E425E4D9C80098DF89 /* MessagesSelectorProtocol.swift */,
@@ -924,6 +939,8 @@
 				C0ED3D0F25CAA7A600505906 /* Protocol */,
 				C0C79EF6265CEEFB0025C69A /* BCHUD.swift */,
 				C0C79EF8265CEF430025C69A /* Toast.swift */,
+				C0FB91902662034B00FEA99F /* InsetLabel.swift */,
+				C0FB918B2661D8B400FEA99F /* TableViewFactory.swift */,
 				C002E36F265E52AC00E291C6 /* ErrorTracker.swift */,
 				C0FB917D2660A30600FEA99F /* MJRefresh+Rx.swift */,
 				C002E371265E53C800E291C6 /* Observable+Ext.swift */,
@@ -982,6 +999,7 @@
 			children = (
 				C0ED3D8E25CAACA100505906 /* UseCaseProvider.swift */,
 				C0ED3DAD25CAAEC900505906 /* UserUseCase.swift */,
+				C0FB91852660D39900FEA99F /* SessionUseCase.swift */,
 			);
 			path = UseCases;
 			sourceTree = "<group>";
@@ -991,6 +1009,7 @@
 			children = (
 				C0ED3DB525CAAF4100505906 /* NetworkAPI */,
 				C0ED3DB125CAAEEF00505906 /* UserUseCase.swift */,
+				C0FB91832660D32600FEA99F /* SessionUseCase.swift */,
 				C0ED3DFC25CAB3D800505906 /* UseCaseProvider.swift */,
 			);
 			path = UseCases;
@@ -999,9 +1018,7 @@
 		C0ED3DB525CAAF4100505906 /* NetworkAPI */ = {
 			isa = PBXGroup;
 			children = (
-				C0ED3DB625CAAF4100505906 /* NetworkProvider.swift */,
 				C0ED3DB825CAAF4100505906 /* URI.swift */,
-				C0ED3DB925CAAF4100505906 /* UsersNetwork.swift */,
 			);
 			path = NetworkAPI;
 			sourceTree = "<group>";
@@ -1090,8 +1107,17 @@
 			isa = PBXGroup;
 			children = (
 				C0FB917B2660A1D700FEA99F /* User.swift */,
+				C0FB91872660D3F400FEA99F /* Session.swift */,
 			);
 			path = Entries;
+			sourceTree = "<group>";
+		};
+		C0FB918D2661E8CB00FEA99F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				C0FB918E2661E8EF00FEA99F /* BaseTableCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1353,6 +1379,7 @@
 				C00768B825E4B8930098DF89 /* TextMessagePresenter.swift in Sources */,
 				C0A4D2E625E2066B00013B31 /* PhotosInputPlaceholderCell.swift in Sources */,
 				C007695625E500650098DF89 /* BaseChatItemsDecorator.swift in Sources */,
+				C0FB918F2661E8EF00FEA99F /* BaseTableCell.swift in Sources */,
 				C00768EB25E4DC3B0098DF89 /* MessageInteractionHandler.swift in Sources */,
 				C0A4D2CB25E2066B00013B31 /* PasteActionInterceptor.swift in Sources */,
 				C0ED3D1425CAA7C700505906 /* Reusable.swift in Sources */,
@@ -1368,6 +1395,7 @@
 				C00768AC25E4B79A0098DF89 /* ChatMessageFactory.swift in Sources */,
 				C00768EF25E4DCDF0098DF89 /* BaseMessageCollectionViewCellAvatarStyle.swift in Sources */,
 				C0A4D2CA25E2066B00013B31 /* ExpandableChatInputBarPresenter.swift in Sources */,
+				C0FB91802660D23D00FEA99F /* SessionListCell.swift in Sources */,
 				C0FB916C26609DF000FEA99F /* ConmmunityViewController.swift in Sources */,
 				C0A4D2CD25E2066B00013B31 /* ReusableXibView.swift in Sources */,
 				C0A4D2F825E2097400013B31 /* SlidingDataSource.swift in Sources */,
@@ -1380,6 +1408,7 @@
 				C0ED3D8525CAAB8900505906 /* ImportFile.swift in Sources */,
 				C0A4D2F425E2094200013B31 /* ChatDataSource.swift in Sources */,
 				C01277A725EE23EB00DE8ADD /* CircleIconView.swift in Sources */,
+				C0FB918C2661D8B400FEA99F /* TableViewFactory.swift in Sources */,
 				C007689525E4A83B0098DF89 /* ScreenMetric.swift in Sources */,
 				C0A4D2D325E2066B00013B31 /* ChatInputItem.swift in Sources */,
 				C0ED3D7325CAAABB00505906 /* Font+Extension.swift in Sources */,
@@ -1398,6 +1427,7 @@
 				C0E2B89025E63F0200F7B092 /* ChatInputBar.swift in Sources */,
 				C0A4D2E325E2066B00013B31 /* PhotosInputWithPlaceholdersDataProvider.swift in Sources */,
 				C0E2B89A25E63FE200F7B092 /* TimeSeparatorCollectionViewCell.swift in Sources */,
+				C0FB91822660D24E00FEA99F /* SessionListCellVM.swift in Sources */,
 				C0A4D2CE25E2066B00013B31 /* ChatInputBarAppearance.swift in Sources */,
 				C0FB916A26609DE800FEA99F /* ConmmunityViewModel.swift in Sources */,
 				C00768BA25E4B8930098DF89 /* TextMessageModel.swift in Sources */,
@@ -1422,6 +1452,7 @@
 				C0A4D2DC25E2066B00013B31 /* PhotosInputCameraPicker.swift in Sources */,
 				C0A4D2E525E2066B00013B31 /* PhotosInputPlaceholderDataProvider.swift in Sources */,
 				C0FB916426609DB600FEA99F /* ContactViewModel.swift in Sources */,
+				C0FB91912662034B00FEA99F /* InsetLabel.swift in Sources */,
 				C07B2E3825CD2F6400C2AB01 /* BCSessionViewController.swift in Sources */,
 				C00768B625E4B8930098DF89 /* TextMessageMenuItemPresenter.swift in Sources */,
 				C0A4D2CC25E2066B00013B31 /* InputContainerView.swift in Sources */,
@@ -1500,6 +1531,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				C0FB917C2660A1D700FEA99F /* User.swift in Sources */,
+				C0FB91862660D39900FEA99F /* SessionUseCase.swift in Sources */,
+				C0FB91882660D3F400FEA99F /* Session.swift in Sources */,
 				C0ED3DAE25CAAEC900505906 /* UserUseCase.swift in Sources */,
 				C0ED3DF925CAB1BE00505906 /* ECodable.swift in Sources */,
 				C0ED3D8F25CAACA100505906 /* UseCaseProvider.swift in Sources */,
@@ -1522,18 +1555,17 @@
 				C002E37C265E58CF00E291C6 /* ChatSocketService.swift in Sources */,
 				C0ED3DE925CAB18300505906 /* CleanDecoder.swift in Sources */,
 				C0ED3DF225CAB18300505906 /* AnyEncodable.swift in Sources */,
+				C0FB91842660D32600FEA99F /* SessionUseCase.swift in Sources */,
 				C0ED3DFD25CAB3D800505906 /* UseCaseProvider.swift in Sources */,
 				C0ED3DED25CAB18300505906 /* CaseDefaultable.swift in Sources */,
 				C0ED3DEB25CAB18300505906 /* _CleanJSONDecoder.swift in Sources */,
 				C0ED3DEE25CAB18300505906 /* ToJSON.swift in Sources */,
 				C0ED3DE125CAB18300505906 /* _CleanJSONUnkeyedDecodingContainer.swift in Sources */,
-				C0ED3DBA25CAAF4100505906 /* NetworkProvider.swift in Sources */,
 				C0ED3DE625CAB18300505906 /* JSONAdapter.swift in Sources */,
 				C0ED3DE425CAB18300505906 /* _CleanJSONKey.swift in Sources */,
 				C0ED3DC625CAAFA700505906 /* AppEnvironment.swift in Sources */,
 				C0ED3DE325CAB18300505906 /* DecodingError+CleanJSON.swift in Sources */,
 				C0ED3DE825CAB18300505906 /* DecodingStrategy.swift in Sources */,
-				C0ED3DBD25CAAF4100505906 /* UsersNetwork.swift in Sources */,
 				C0ED3DE225CAB18300505906 /* _CleanJSONDecoder+SingleValueDecodingContainer.swift in Sources */,
 				C002E37A265E564700E291C6 /* SocketService.swift in Sources */,
 				C0ED3DEF25CAB18300505906 /* Defaultable.swift in Sources */,
